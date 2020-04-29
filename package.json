@@ -1,0 +1,32 @@
+{
+  "name": "anna",
+  "description": "Project description",
+  "version": "0.1.0",
+  "license": "MIT",
+  "author": {
+    "name": "Gregory Sitnin",
+    "email": "greg@sitnin.com"
+  },
+  "scripts": {
+    "clean": "rm -rf ./dist && mkdir -p dist",
+    "build": "tsc -p tsconfig.json"
+  },
+  "main": "./dist/index.js",
+  "bin": "./dist/cli.js",
+  "readme": "README.md",
+  "dependencies": {
+    "cli": "^1.0.1",
+    "json-confdir": "^2.1.1",
+    "read-pkg-up": "^7.0.1"
+  },
+  "devDependencies": {
+    "@types/cli": "^0.11.19",
+    "@types/node": "^13.9.4",
+    "@typescript-eslint/eslint-plugin": "^2.19.2",
+    "@typescript-eslint/parser": "^2.19.2",
+    "eslint": "^6.8.0",
+    "ts-loader": "^7.0.1",
+    "ts-node": "^8.6.2",
+    "typescript": "^3.5.3"
+  }
+}
