@@ -7,6 +7,10 @@
     "name": "Gregory Sitnin",
     "email": "greg@sitnin.com"
   },
+  "repository": {
+    "type" : "git",
+    "url" : "https://github.com/sitnin/anna.git"
+  },
   "scripts": {
     "clean": "mkdir -p ./dist && rm -rf ./dist/*",
     "build": "./node_modules/.bin/tsc -p tsconfig.json",
