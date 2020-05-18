@@ -1,11 +1,15 @@
 {
   "name": "anna",
   "description": "Anna framework core library",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "license": "MIT",
   "author": {
     "name": "Gregory Sitnin",
     "email": "greg@sitnin.com"
+  },
+  "repository": {
+    "type" : "git",
+    "url" : "https://github.com/sitnin/anna.git"
   },
   "scripts": {
     "clean": "mkdir -p ./dist && rm -rf ./dist/*",
