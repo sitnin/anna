@@ -1,6 +1,6 @@
 {
   "name": "anna",
-  "description": "Project description",
+  "description": "Anna framework core library",
   "version": "0.1.0",
   "license": "MIT",
   "author": {
@@ -8,8 +8,10 @@
     "email": "greg@sitnin.com"
   },
   "scripts": {
-    "clean": "rm -rf ./dist && mkdir -p dist",
-    "build": "tsc -p tsconfig.json"
+    "clean": "mkdir -p ./dist && rm -rf ./dist/*",
+    "build": "./node_modules/.bin/tsc -p tsconfig.json",
+    "rebuild": "npm run clean && npm run build",
+    "prepublish": "npm run rebuild"
   },
   "main": "./dist/index.js",
   "bin": "./dist/cli.js",

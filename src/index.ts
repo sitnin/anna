@@ -13,14 +13,13 @@ interface DatabaseConnectionConfig {
 
 interface LoggingConfig {
     kind: "console" | "file" | "syslog";
-    file?: string;
-    facility?: string;
+    target?: string;
 }
 
 export interface ApplicationConfig {
     debug?: boolean;
     logs: false | LoggingConfig;
-    db?: string | DatabaseConnectionConfig;
+    // db?: string | DatabaseConnectionConfig;
 }
 
 const defaultAppConfig = {
@@ -30,29 +29,38 @@ const defaultAppConfig = {
 
 export abstract class Application {
     private _config: ApplicationConfig;
+    private _datatbases: Map<string, any> = new Map();
 
-    get cfg (): ApplicationConfig {
+    get cfg(): ApplicationConfig {
         return this._config;
     }
 
-    get debug (): boolean {
+    get debug(): boolean {
         return (typeof this.cfg === "object") && !!this.cfg.debug;
     }
 
-    abstract async main (): Promise<void>;
+    get dbs(): Map<string, any> {
+        return this._datatbases;
+    }
 
-    async loadConfiguration (dirs: string | string[]): Promise<any> {
+    abstract async main(): Promise<void>;
+
+    async loadConfiguration(dirs: string | string[]): Promise<any> {
         const confDirs = typeof dirs === "string" ? [dirs] : dirs;
         const reader = new ConfDirReader(true);
         const config = await reader.load(...confDirs);
         return Object.assign({}, defaultAppConfig, config);
     }
 
-    async init (): Promise<void> {
-
+    async initDatabases(): Promise<void> {
+        // Intentionally left blank
     }
 
-    async run (dirs: string | string[]): Promise<void> {
+    async init(): Promise<void> {
+        await this.initDatabases();
+    }
+
+    async run(dirs: string | string[]): Promise<void> {
         try {
             this._config = await this.loadConfiguration(dirs);
             await this.init();
